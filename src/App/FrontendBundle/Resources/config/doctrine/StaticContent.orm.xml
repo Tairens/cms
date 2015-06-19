@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\FrontendBundle\Entity\StaticContent" table="static_content">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="title" type="text" column="title" nullable="false"/>
+    <field name="content" type="text" column="content" nullable="false"/>
+    <field name="typeId" type="integer" column="type_id" nullable="false"/>
+    <field name="createdAt" type="datetime" column="created_at" nullable="false"/>
+    <field name="updatedAt" type="datetime" column="updated_at" nullable="false"/>
+  </entity>
+</doctrine-mapping>

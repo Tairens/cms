@@ -1,0 +1,27 @@
+app_frontend_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: AppFrontendBundle:Default:index }
+
+createStaticContent:
+    path:     /staticcontent/new
+    defaults: { _controller: AppFrontendBundle:StaticContent:create }
+
+validateStaticContent:
+    path:     /ajax/createStaticContent/
+    defaults: { _controller: AppFrontendBundle:StaticContent:validateCreation }
+
+editStaticContent:
+    path:   /staticcontent/edit/{id}
+    defaults: { _controller: AppFrontendBundle:StaticContent:edit }
+    
+validateEditStaticContent:
+    path:     /ajax/updateStaticContent/
+    defaults: { _controller: AppFrontendBundle:StaticContent:validateEdit }
+
+getStaticContent:
+    path:     /ajax/getStaticContent/{id}
+    defaults: { _controller: AppFrontendBundle:StaticContent:get }
+    
+registerAccount:
+    path:     /account/register
+    defaults: { _controller: AppFrontendBundle:User:register }

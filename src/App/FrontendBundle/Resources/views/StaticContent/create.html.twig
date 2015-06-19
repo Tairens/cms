@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block pageTitle %}{{ page_title }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="creationForm">
+            <form action="">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon fullFormLabel">Title</span>
+                            <input id="staticTitle" type="text" class="form-control" asria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon fullFormLabel">Type</span>
+                            <div class="typeSelect">
+                                <select id="staticTypeName">
+                                    {% for type in types %}
+                                        <option value="{{ type.getName() }}">{{ type.getName() }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear" style="padding: 10px;"></div>
+                <div class="input-group">
+                    <span class="input-group-addon fullFormLabel">Content</span>
+                    <textarea id="staticContent"></textarea>
+                </div>
+                <div class="clear" style="padding: 10px;"></div>
+                <div class="input-group">
+                    <button type="submit" class="btn btn-primary" id="submitStaticContent">Submit</button>
+                </div>      
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/frontendLib/createStaticContent.js') }}"></script>
+{% endblock %}
+
+{% block javascripts_on_ready %}
+    var object = myApp.staticContent.initialize(window.location.pathname);
+{% endblock %}

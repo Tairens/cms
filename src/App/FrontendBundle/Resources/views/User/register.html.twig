@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="singup">
+        <h3>CREATE AN ACCOUNT</h3>
+        <div class="signup-main">
+            <form>
+                <input type="text" value="First Name"/>
+                <input type="text" value="Last Name" class="lessgap"/>
+                <input type="text" value="Email Id" class="email"/>
+                <input type="password" value="Password"/>
+                <input type="password" value="Confirm Password" class="lessgap"/>
+                <input type="text" value="Phone Number" class="phone"/>
+                <div class="send-button">
+                    <input  type="submit" value="Sign me up" />
+                </div>
+                <p>Already have an account?  <a href="#">Login Here</a></p>
+            </form>
+        </div>
+    </div>	
+{% endblock %}
