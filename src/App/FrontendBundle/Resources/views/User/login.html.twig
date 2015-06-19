@@ -1,20 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="singup">
-        <h3>CREATE AN ACCOUNT</h3>
-        <div class="signup-main">
-            <form>
-                <input type="text" value="First Name"/>
-                <input type="text" value="Last Name" class="lessgap"/>
-                <input type="text" value="Email Id" class="email"/>
-                <input type="password" value="Password"/>
-                <input type="password" value="Confirm Password" class="lessgap"/>
-                <input type="text" value="Phone Number" class="phone"/>
-                <div class="send-button">
-                    <input  type="submit" value="Sign me up" />
-                </div>
-                <p>Already have an account?  <a href="#">Login Here</a></p>
-            </form>
+    <div class="login">	
+        <h2>Login to account</h2>
+        <div class="input-group">
+            <span class="input-group-addon fullFormLabel">Email</span>
+            <input type="text" class="form-control" asria-describedby="basic-addon1">
         </div>
+        <div class="input-group">
+            <span class="input-group-addon fullFormLabel">Password</span>
+            <input type="password" class="form-control" asria-describedby="basic-addon1">
+        </div>
+        <button type="submt" class="btn btn-primary">Submit</button>
+         <p style="margin-top: 10px;">Doesn't have an account?  <a href="#">Register here</a></p>
     </div>	
 {% endblock %}

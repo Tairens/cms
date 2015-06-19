@@ -25,3 +25,7 @@ getStaticContent:
 registerAccount:
     path:     /account/register
     defaults: { _controller: AppFrontendBundle:User:register }
+    
+loginAccount:
+    path:     /account/login
+    defaults: { _controller: AppFrontendBundle:User:login }
