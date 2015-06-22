@@ -47,8 +47,8 @@ class User {
     }
     
     public function delete(){
-        unset($_SESSION[$object->userSessionID]);
-        unset($_SESSION[$object->expirationTimeSessionID]);
+        unset($_SESSION[$this->userSessionID]);
+        unset($_SESSION[$this->expirationTimeSessionID]);
     }
 
 

@@ -37,8 +37,11 @@ class UserController extends Controller {
         $password = $request->request->get('typeName');
         $response = new \Symfony\Component\HttpFoundation\JsonResponse();
         $data = array();
+        $data['validation'] = false;
         $data['validationText'] = 'Invalid email or password.';
+        \App\FrontendBundle\Library\User::$doctrine = $this->getDoctrine();
         if(\App\FrontendBundle\Library\User::create($email, $password)){
+            $data['validation'] = true;
             $data['validationText'] = 'Logged in to account. ';
         }
         $response->setData($data);
@@ -46,9 +49,18 @@ class UserController extends Controller {
     }
 
     public function logoutAction() {
+        $response = new \Symfony\Component\HttpFoundation\JsonResponse();
+        $data = array();
+        $data['validation'] = false;
+        $data['validationText'] = 'You are not logged in.';
         if(isset(\App\FrontendBundle\Library\User::$instance)){
+            $data['validation'] = true;
+            $data['validationText'] = 'You logged out.';
+            \App\FrontendBundle\Library\User::$instance->delete();
             unset(\App\FrontendBundle\Library\User::$instance);
         }
+        $response->setData($data);
+        return $response;
     }
 
 }

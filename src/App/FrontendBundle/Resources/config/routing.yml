@@ -29,3 +29,7 @@ registerAccount:
 loginAccount:
     path:     /account/login
     defaults: { _controller: AppFrontendBundle:User:login }
+    
+loginCheckAccount:
+    path:     /ajax/login
+    defaults: { _controller: AppFrontendBundle:User:loginConfirm }

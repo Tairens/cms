@@ -4,13 +4,21 @@
         <h2>Login to account</h2>
         <div class="input-group">
             <span class="input-group-addon fullFormLabel">Email</span>
-            <input type="text" class="form-control" asria-describedby="basic-addon1">
+            <input id="loginEmail" type="text" class="form-control" asria-describedby="basic-addon1">
         </div>
         <div class="input-group">
             <span class="input-group-addon fullFormLabel">Password</span>
-            <input type="password" class="form-control" asria-describedby="basic-addon1">
+            <input id="loginPassword" type="password" class="form-control" asria-describedby="basic-addon1">
         </div>
-        <button type="submt" class="btn btn-primary">Submit</button>
+        <button id="loginSubmit" type="submt" class="btn btn-primary">Submit</button>
          <p style="margin-top: 10px;">Doesn't have an account?  <a href="#">Register here</a></p>
     </div>	
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/frontendLib/login.js') }}"></script>
+{% endblock %}
+
+{% block javascripts_on_ready %}
+    var object = myApp.login.initialize();
 {% endblock %}
