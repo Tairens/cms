@@ -12,27 +12,35 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <div id="loader-wrapper">
+            <div id="loader"></div>
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+        </div>
         <div class="headBar">
             <button class="glyphicon glyphicon-home btn btn-primary"></button>
+            <div id="userIconsContainer">
+
+            </div>
+            <button id="loginButton" class="glyphicon btn btn-primary"></button>
         </div>
-        {% block body %}{% endblock %}
-        <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/noty/packaged/jquery.noty.packaged.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/tinymce/js/tinymce/tinymce.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/select2.full.min.js') }}"></script>
-        <script type="text/javascript">
-            var myApp = myApp || {};
-        </script>
-        {% block javascripts %}
-
-        {% endblock %}
-
-        <script>
-            $('document').ready(function () {
+    {% block body %}{% endblock %}
+    <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/noty/packaged/jquery.noty.packaged.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/tinymce/js/tinymce/tinymce.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/select2.full.min.js') }}"></script>
+    <script type="text/javascript">
+        var myApp = myApp || {};
+    </script>
+    <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/frontendLib/index.js') }}"></script>s
+    {% block javascripts %}{% endblock %}
+    <script>
+        $('document').ready(function () {
+            myApp.index.initialize();
             {% block javascripts_on_ready %}
 
             {% endblock %}
-            });
-        </script>
-    </body>
+        });
+    </script>
+</body>
 </html>

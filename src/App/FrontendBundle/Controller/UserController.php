@@ -27,40 +27,49 @@ class UserController extends Controller {
         
     }
     
+    public function registerLoggedUserAction(){
+        $data = array();
+        try{
+            $obj = new \App\FrontendBundle\Library\User($this->getDoctrine());
+            $data['validation'] = true;
+        } 
+        catch (\Exception $ex) {
+            $data['validation'] = false;
+        }
+        return \Symfony\Component\HttpFoundation\JsonResponse($data);
+    }
+    
     public function loginAction(){
         $view = 'AppFrontendBundle:User:login.html.twig';
         return $this->render($view, array());
     }
     
     public function loginConfirmAction(\Symfony\Component\HttpFoundation\Request $request) {
-        $email = $request->request->get('title');
-        $password = $request->request->get('typeName');
-        $response = new \Symfony\Component\HttpFoundation\JsonResponse();
+        $email = $request->request->get('email');
+        $password = $request->request->get('password');
         $data = array();
         $data['validation'] = false;
         $data['validationText'] = 'Invalid email or password.';
-        \App\FrontendBundle\Library\User::$doctrine = $this->getDoctrine();
-        if(\App\FrontendBundle\Library\User::create($email, $password)){
+        if(\App\FrontendBundle\Library\User::create($this->getDoctrine(), $email, $password)){
             $data['validation'] = true;
             $data['validationText'] = 'Logged in to account. ';
         }
-        $response->setData($data);
-        return $response;
+        return \Symfony\Component\HttpFoundation\JsonResponse($data);
     }
 
     public function logoutAction() {
-        $response = new \Symfony\Component\HttpFoundation\JsonResponse();
         $data = array();
-        $data['validation'] = false;
-        $data['validationText'] = 'You are not logged in.';
-        if(isset(\App\FrontendBundle\Library\User::$instance)){
+        try{
+            $user = new \App\FrontendBundle\Library\User($this->getDoctrine());
+            $user->delete();
             $data['validation'] = true;
             $data['validationText'] = 'You logged out.';
-            \App\FrontendBundle\Library\User::$instance->delete();
-            unset(\App\FrontendBundle\Library\User::$instance);
         }
-        $response->setData($data);
-        return $response;
+        catch(\Exception $ex){
+            $data['validation'] = false;
+            $data['validationText'] = 'You are not logged in.';
+        }
+        return \Symfony\Component\HttpFoundation\JsonResponse($data);
     }
 
 }

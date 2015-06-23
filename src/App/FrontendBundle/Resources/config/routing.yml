@@ -1,7 +1,3 @@
-app_frontend_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: AppFrontendBundle:Default:index }
-
 createStaticContent:
     path:     /staticcontent/new
     defaults: { _controller: AppFrontendBundle:StaticContent:create }
@@ -33,3 +29,11 @@ loginAccount:
 loginCheckAccount:
     path:     /ajax/login
     defaults: { _controller: AppFrontendBundle:User:loginConfirm }
+    
+registerLoggedUser:
+    path:     /ajax/registerlogged
+    defaults: { _controller: AppFrontendBundle:User:registerLoggedUser }
+    
+logout:
+    path:     /ajax/logout
+    defaults: { _controller: AppFrontendBundle:User:logout }

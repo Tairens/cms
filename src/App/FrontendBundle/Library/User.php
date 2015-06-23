@@ -16,25 +16,26 @@ namespace App\FrontendBundle\Library;
 
 
 class User {
-    static public $doctrine;
-    static public $instance;
-    
     private $userSessionID = "USER_ID";
     private $expirationTimeSessionID = "EXPIRATION_TIME_ID";
     
     private $user;
     private $time;
     private $expirationTime;
+    private $doctrine;
     
-    public function __construct($time = 15) {
+    public function __construct($doctrine, $time = 15) {
+        $this->doctrine = $doctrine;
         if(isset($_SESSION[$this->userSessionID])){
             $userid = (int)$_SESSION[$this->userSessionID];
-            $this->user = self::$doctrine->getRepository('AppFrontendBundle:User')->find($userid);
-            $this->expirationTime = $_SESSION[$this->expirationTimeSessionID];
-            $this->time = $time * 60 * 1000;
+            $this->user = $this->doctrine->getRepository('AppFrontendBundle:User')->find($userid);
+            $this->expirationTime = $_SESSION[$this->expirationTimeSessionID];;
             if(!$this->user){
                 throw new \Exception('Cannot find user with with id ' . $userid . '.');
             }
+        }
+        else{
+            throw new \Exception('Session doesn\'t exist.');
         }
     }
     
@@ -42,26 +43,17 @@ class User {
         return $this->expirationTime;
     }
     
-    public function getDoctrineObject(){
-        return $this->user;
-    }
-    
     public function delete(){
         unset($_SESSION[$this->userSessionID]);
         unset($_SESSION[$this->expirationTimeSessionID]);
     }
 
-
-    public static function create($email, $password, $time = 15){
-        $object = new User($time);
-        $user = self::$doctrine->getRepository('AppFrontendBundle:User')->findOneBy(array('email' => $email));
+    public static function create($doctrine, $email, $password, $time = 15){
+        $user = $doctrine->getRepository('AppFrontendBundle:User')->findOneBy(array('email' => $email));
         if($user){
             if($user->getPassword() == $password){
-                $object->user = $user;
-                $object->expirationTime = time() + $object->time;
                 $_SESSION[$object->userSessionID] = $user->getId();
-                $_SESSION[$object->expirationTimeSessionID] = $object->expirationTime;
-                self::$instance = $object;
+                $_SESSION[$object->expirationTimeSessionID] = time() + ($time * 60 * 1000);
                 return true;
             }
         }
