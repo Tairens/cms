@@ -23,6 +23,11 @@ class UserController extends Controller {
         return $this->render($view, array());
     }
     
+    public function loginAction(){
+        $view = 'AppFrontendBundle:User:login.html.twig';
+        return $this->render($view, array());
+    }
+    
     public function confirmRegisterAction(){
         
     }
@@ -36,12 +41,7 @@ class UserController extends Controller {
         catch (\Exception $ex) {
             $data['validation'] = false;
         }
-        return \Symfony\Component\HttpFoundation\JsonResponse($data);
-    }
-    
-    public function loginAction(){
-        $view = 'AppFrontendBundle:User:login.html.twig';
-        return $this->render($view, array());
+        return new \Symfony\Component\HttpFoundation\JsonResponse($data);
     }
     
     public function loginConfirmAction(\Symfony\Component\HttpFoundation\Request $request) {
@@ -54,7 +54,7 @@ class UserController extends Controller {
             $data['validation'] = true;
             $data['validationText'] = 'Logged in to account. ';
         }
-        return \Symfony\Component\HttpFoundation\JsonResponse($data);
+        return new \Symfony\Component\HttpFoundation\JsonResponse($data);
     }
 
     public function logoutAction() {
@@ -69,7 +69,6 @@ class UserController extends Controller {
             $data['validation'] = false;
             $data['validationText'] = 'You are not logged in.';
         }
-        return \Symfony\Component\HttpFoundation\JsonResponse($data);
+        return new \Symfony\Component\HttpFoundation\JsonResponse($data);
     }
-
 }

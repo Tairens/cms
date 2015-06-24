@@ -12,6 +12,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        {{ include('default/modal.html.twig') }}
         <div id="loader-wrapper">
             <div id="loader"></div>
             <div class="loader-section section-left"></div>
@@ -26,12 +27,14 @@
         </div>
     {% block body %}{% endblock %}
     <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/noty/packaged/jquery.noty.packaged.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/tinymce/js/tinymce/tinymce.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/select2.full.min.js') }}"></script>
     <script type="text/javascript">
         var myApp = myApp || {};
     </script>
+    <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/frontendLib/modal.js') }}"></script>s
     <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/frontendLib/index.js') }}"></script>s
     {% block javascripts %}{% endblock %}
     <script>
