@@ -1,18 +1,20 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_notlogged.html.twig' %}
 {% block body %}
-    <div class="login">	
-        <h2>Login to account</h2>
-        <div class="input-group">
-            <span class="input-group-addon fullFormLabel">Email</span>
-            <input id="loginEmail" type="text" class="form-control" asria-describedby="basic-addon1">
-        </div>
-        <div class="input-group">
-            <span class="input-group-addon fullFormLabel">Password</span>
-            <input id="loginPassword" type="password" class="form-control" asria-describedby="basic-addon1">
-        </div>
-        <button id="loginSubmit" type="submt" class="btn btn-primary">Submit</button>
-         <p style="margin-top: 10px;">Doesn't have an account?  <a href="#">Register here</a></p>
-    </div>	
+    <div class="loginContainer">
+        <div class="login">	
+            <h2>Login</h2>
+            <div class="input-group">
+                <span class="input-group-addon fullFormLabel">Email</span>
+                <input id="loginEmail" type="text" class="form-control" asria-describedby="basic-addon1">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon fullFormLabel">Password</span>
+                <input id="loginPassword" type="password" class="form-control" asria-describedby="basic-addon1">
+            </div>
+            <button id="loginSubmit" type="submt" class="btn btn-primary">Submit</button>
+             <p style="margin-top: 10px;">Doesn't have an account?  <a href="#">Register here</a></p>
+        </div>	
+    </div>
 {% endblock %}
 
 {% block javascripts %}

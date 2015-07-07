@@ -13,17 +13,9 @@
     </head>
     <body>
         {{ include('default/modal.html.twig') }}
-        {{ include('default/addIcon.html.twig') }}
-            <div class="leftMenuContainer col-md-2 col-sm-12">
-                {{ include('default/leftMenu.html.twig') }}
-            </div>
-            <div class="mainContainer col-md-8 col-sm-12">
+            <div class="mainContainer">
                 {% block body %}{% endblock %}
-            </div>
-            <div class="rightMenuContainer col-md-2 col-sm-12">
-                {{ include('default/rightMenu.html.twig') }}
-            </div>
-        {{ include('default/headBar.html.twig') }}
+    </div>
         <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/appfrontend/js/noty/packaged/jquery.noty.packaged.min.js') }}"></script>
@@ -40,7 +32,6 @@
         <script>
             $('document').ready(function () {
                 myApp.index.initialize();
-                myApp.menu.initialize();
                 {% block javascripts_on_ready %}
 
                 {% endblock %}
